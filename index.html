@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoVision | Interactive Sorting Visualizer</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">AlgoVision</div>
+        <nav id="main-nav">
+            <a href="#" data-target="hero-section" class="active">Home</a>
+            <a href="#" data-target="visualizer-section">Visualizer</a>
+            <a href="#" data-target="compare-section">Compare</a>
+            <a href="#" data-target="learn-section">Learn DSA</a>
+            <a href="#" data-target="about-section">About</a>
+            <a href="https://github.com/yourusername/algovision" target="_blank">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero-section" class="page-section active">
+            <div class="hero-content">
+                <h1>Understand Sorting.<br><span class="highlight">See Every Step.</span></h1>
+                <p>An interactive, step-by-step visualizer for data structures and sorting algorithms. Built for developers and students.</p>
+                <div class="hero-buttons">
+                    <button class="btn primary" id="hero-launch-btn">Launch Visualizer</button>
+                    <button class="btn secondary" id="hero-learn-btn">Explore Algorithms</button>
+                </div>
+                <div class="hero-preview">
+                    <div class="bar" style="height: 40%;"></div>
+                    <div class="bar" style="height: 80%;"></div>
+                    <div class="bar" style="height: 60%;"></div>
+                    <div class="bar" style="height: 100%;"></div>
+                    <div class="bar" style="height: 30%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualizer Section -->
+        <section id="visualizer-section" class="page-section">
+            <div class="workspace">
+                <aside class="controls-panel">
+                    <h3>Controls</h3>
+                    <div class="control-group">
+                        <label for="algo-select">Algorithm</label>
+                        <select id="algo-select">
+                            <option value="bubble">Bubble Sort</option>
+                            <option value="selection">Selection Sort</option>
+                            <option value="insertion">Insertion Sort</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="size-slider">Array Size (<span id="size-val">30</span>)</label>
+                        <input type="range" id="size-slider" min="5" max="100" value="30">
+                    </div>
+                    <div class="control-group">
+                        <label for="speed-slider">Speed</label>
+                        <input type="range" id="speed-slider" min="1" max="100" value="50">
+                    </div>
+                    <div class="control-group">
+                        <button id="btn-generate" class="btn block">Generate Random Array</button>
+                    </div>
+                    <div class="control-group custom-input-group">
+                        <input type="text" id="custom-input" placeholder="e.g. 10,5,20,8">
+                        <button id="btn-custom" class="btn">Set</button>
+                    </div>
+                    <div class="control-group actions">
+                        <button id="btn-start" class="btn primary block">Start</button>
+                        <button id="btn-pause" class="btn secondary block" disabled>Pause</button>
+                        <button id="btn-reset" class="btn danger block">Reset</button>
+                    </div>
+                </aside>
+
+                <div class="visualization-area">
+                    <div class="stats-panel">
+                        <div class="stat-box">Comparisons: <span id="stat-comp">0</span></div>
+                        <div class="stat-box">Swaps: <span id="stat-swap">0</span></div>
+                        <div class="stat-box">Writes/Shifts: <span id="stat-write">0</span></div>
+                        <div class="stat-box">Time: <span id="stat-time">0.00</span> ms</div>
+                    </div>
+                    <div id="canvas-container"></div>
+                    <div class="legend">
+                        <div><span class="box default"></span> Unsorted</div>
+                        <div><span class="box compare"></span> Comparing</div>
+                        <div><span class="box swap"></span> Swap/Write</div>
+                        <div><span class="box sorted"></span> Sorted</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="algo-info" id="algo-info">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Compare Section -->
+        <section id="compare-section" class="page-section">
+            <div class="content-container">
+                <h2>Compare Algorithms</h2>
+                <p>Run all implemented algorithms against the exact same initial array to compare their operational efficiency and execution time.</p>
+                <button id="btn-run-compare" class="btn primary">Run Benchmark (Size 100)</button>
+                <div id="compare-results" class="compare-results"></div>
+            </div>
+        </section>
+
+        <!-- Learn Section -->
+        <section id="learn-section" class="page-section">
+            <div class="content-container text-content">
+                <h2>Data Structures & Algorithms</h2>
+                <h3>Why Sorting Matters</h3>
+                <p>Sorting algorithms are fundamental to computer science. They optimize data for searching (like binary search) and help us understand algorithmic efficiency (Big O notation).</p>
+                <h3>Big O Notation</h3>
+                <ul>
+                    <li><strong>Best Case:</strong> The minimum time required for execution (e.g., array is already sorted).</li>
+                    <li><strong>Average Case:</strong> The expected time required for a random input.</li>
+                    <li><strong>Worst Case:</strong> The maximum time required (e.g., array is reverse sorted).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about-section" class="page-section">
+            <div class="content-container text-content">
+                <h2>About AlgoVision</h2>
+                <p>AlgoVision is an educational Data Structures and Algorithms project built to explore sorting mechanics, performance analysis, and interactive web development. It executes sorting logic locally in the browser utilizing Vanilla JavaScript Generators for reliable step-by-step visualization.</p>
+                <div class="card">
+                    <h3>Developer Information</h3>
+                    <p><strong>Developers:</strong> Magizh Sivakumar & Miklin Teryl.</p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/magizh-code">Magizh's GitHub</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> AlgoVision. An educational DSA visualization project.</p>
+        <div class="footer-links">
+            <span>Tech Stack: HTML5, CSS3, Vanilla JS</span> | 
+            <a href="https://github.com/yourusername/algovision" target="_blank">View Source</a>
+        </div>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
